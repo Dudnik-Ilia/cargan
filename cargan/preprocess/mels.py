@@ -39,9 +39,9 @@ class MelSpectrogram(torch.nn.Module):
         super().__init__()
         window = torch.hann_window(cargan.NUM_FFT, dtype=torch.float)
         mel_basis = librosa.filters.mel(
-            cargan.SAMPLE_RATE,
-            cargan.NUM_FFT,
-            cargan.NUM_MELS
+            sr=cargan.SAMPLE_RATE,
+            n_fft=cargan.NUM_FFT,
+            n_mels=cargan.NUM_MELS
         ).astype(np.float32)
         mel_basis = torch.from_numpy(mel_basis)
         self.register_buffer("mel_basis", mel_basis)
